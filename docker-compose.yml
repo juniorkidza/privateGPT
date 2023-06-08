@@ -5,14 +5,16 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
+    volumes:
+      - ./client/:/app/client
     ports:
       - 3000:3000
-    depends_on:
-      - server
 
   server:
     build:
       context: ./server
       dockerfile: Dockerfile
+    volumes:
+      - ./server/:/app/server
     ports:
       - 5000:5000

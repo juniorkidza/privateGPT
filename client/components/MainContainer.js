@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
-import { FormControl, Stack,Spinner } from "react-bootstrap";
+import { FormControl, Stack, Spinner } from "react-bootstrap";
 import Image from "next/image";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -26,7 +26,7 @@ export default function MainContainer() {
       setChat((chat) => [...chat, { isBot: false, msg: question }]);
       setQuestion("");
       try {
-        const response = await fetch("http://localhost:5000/get_answer", {
+        const response = await fetch("http://server:5000/get_answer", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -34,8 +34,10 @@ export default function MainContainer() {
           body: JSON.stringify(question),
         });
 
-        if (!response.ok) {	
-		  response.text().then(text => {toast.error("Error getting data."+text);})
+        if (!response.ok) {
+          response.text().then((text) => {
+            toast.error("Error getting data." + text);
+          });
           setLoading(false);
         } else {
           const data = await response.json();
@@ -116,11 +118,15 @@ export default function MainContainer() {
               <h3 style={{ color: "gray" }}>A better UI for PrivateGPT</h3>
             </Stack>
           )}
-          {loading ? <Stack gap={2} direction="horizontal" className="loading">
-            <Spinner size="sm" animation="grow" />
-            <Spinner size="sm" animation="grow" />
-            <Spinner size="sm" animation="grow" />
-          </Stack> : ""}
+          {loading ? (
+            <Stack gap={2} direction="horizontal" className="loading">
+              <Spinner size="sm" animation="grow" />
+              <Spinner size="sm" animation="grow" />
+              <Spinner size="sm" animation="grow" />
+            </Stack>
+          ) : (
+            ""
+          )}
         </div>
         <div className="px-4 justify-content-center align-items-center">
           <div className="d-flex justify-content-center align-items-center mb-sm-0">

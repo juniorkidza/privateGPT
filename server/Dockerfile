@@ -1,20 +1,20 @@
-# Use a base Python image
-FROM python:3.9
+FROM python:3.8
 
-# Set the working directory in the container
-WORKDIR /app
+RUN python -m pip install --upgrade pip
+RUN pip install --upgrade setuptools
+RUN rm ~/.cache/pip -rf
 
-# Copy the requirements.txt file to the container
-COPY requirements.txt .
+WORKDIR /app/
 
-# Install the Python dependencies
-RUN pip install -r requirements.txt
+COPY requirements.txt ./
 
-# Copy the privateGPT.py file to the container
-COPY privateGPT.py .
+RUN pip install \
+  --trusted-host pypi.org \
+  --trusted-host pypi.python.org \
+  --trusted-host=files.pythonhosted.org \
+  --no-cache-dir \
+  -r requirements.txt
 
-# Expose port 5000
-EXPOSE 5000
+COPY . .
 
-# Run the privateGPT.py script
-CMD ["python", "privateGPT.py"]
+ENTRYPOINT [ "python", "privateGPT.py" ]

@@ -21,4 +21,5 @@ services:
     deploy:
       resources:
         reservations:
-          cpus: 12
+          cpus: "12"
+          

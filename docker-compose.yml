@@ -18,3 +18,7 @@ services:
       - ./server/:/app/server
     ports:
       - 5000:5000
+    deploy:
+      resources:
+        reservations:
+          cpus: 12

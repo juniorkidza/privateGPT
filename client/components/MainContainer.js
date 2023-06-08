@@ -26,13 +26,16 @@ export default function MainContainer() {
       setChat((chat) => [...chat, { isBot: false, msg: question }]);
       setQuestion("");
       try {
-        const response = await fetch("http://server:5000/get_answer", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(question),
-        });
+        const response = await fetch(
+          "https://api-gpt.harmonyx.works/get_answer",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(question),
+          }
+        );
 
         if (!response.ok) {
           response.text().then((text) => {

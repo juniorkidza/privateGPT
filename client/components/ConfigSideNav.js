@@ -12,7 +12,7 @@ export default function ConfigSideNav() {
   const ingestData = async () => {
     try {
       setIsLoading(true);
-      const res = await fetch("http://server:5000/ingest");
+      const res = await fetch("https://api-gpt.harmonyx.works/ingest");
       const jsonData = await res.json();
       if (!res.ok) {
         // This will activate the closest `error.js` Error Boundary
@@ -33,7 +33,7 @@ export default function ConfigSideNav() {
   const handleDownloadModel = async () => {
     try {
       setdownloadInProgress(true);
-      const res = await fetch("http://server:5000/download_model");
+      const res = await fetch("https://api-gpt.harmonyx.works/download_model");
       const jsonData = await res.json();
       if (!res.ok) {
         response.text().then((text) => {
@@ -64,7 +64,7 @@ export default function ConfigSideNav() {
       const formData = new FormData();
       formData.append("document", selectedFile);
 
-      const res = await fetch("http://server:5000/upload_doc", {
+      const res = await fetch("https://api-gpt.harmonyx.works/upload_doc", {
         method: "POST",
         body: formData,
       });

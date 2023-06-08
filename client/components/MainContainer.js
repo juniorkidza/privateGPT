@@ -118,10 +118,10 @@ export default function MainContainer() {
               <h1 className="mt-sm-5">
                 <small>PrivateGPT by HarmonyX</small>
               </h1>
-              <h3 style={{ color: "gray" }}>
+              <h5 style={{ color: "gray" }}>
                 Unlock Infinite Possibilities with GPT: Revolutionize Your
                 Software Experience!"
-              </h3>
+              </h5>
             </Stack>
           )}
           {loading ? (
